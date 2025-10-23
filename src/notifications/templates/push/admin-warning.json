@@ -1,0 +1,5 @@
+{
+  "title": "Resumen diario de pedidos",
+  "body": "Hoy se registraron {{totalOrders}} pedidos y {{pendingOrders}} pendientes."
+}
+

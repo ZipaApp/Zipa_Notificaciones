@@ -1,0 +1,5 @@
+{
+  "title": "Actualización de Pedido",
+  "body": "Tu pedido #{{orderId}} cambió de estado a {{status}}. {{message}}"
+}
+
