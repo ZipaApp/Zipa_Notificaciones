@@ -1,5 +1,0 @@
-{
-  "title": "Alerta de Inventario",
-  "body": "El producto {{productName}} tiene un stock bajo ({{stock}} unidades)."
-}
-

@@ -1,20 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { NotificationsModule } from './notifications/notifications.module';
-import { RabbitMQConfig } from './config/rabbitmq.config';
-import { MongoConfig } from './config/mongo.config';
-import { MailerConfig } from './config/mailer.config';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRootAsync({
-      useFactory: async () => ({
-        uri: MongoConfig.uri,
-      }),
-    }),
-    NotificationsModule,
+    MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://mongo:27017/notificaciones'),
+    NotificationModule,
   ],
 })
 export class AppModule {}

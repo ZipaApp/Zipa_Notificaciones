@@ -1,19 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const logger = new Logger('Bootstrap');
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.RMQ,
+    options: {
+      urls: ['amqp://rabbitmq:5672'],
+      queue: 'notificaciones_queue',
+      queueOptions: { durable: true },
+    },
+  });
 
-  app.enableCors();
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
-
-  const port = process.env.PORT || 3007;
-  await app.listen(port);
-
-  logger.log(`🚀 Notification service running on port ${port}`);
+  await app.listen();
+  console.log('🚀 Microservicio de Notificaciones escuchando eventos...');
 }
-
 bootstrap();
 

@@ -1,5 +1,0 @@
-{
-  "title": "Recordatorio de Servicio",
-  "body": "Tienes una cita de {{serviceType}} con {{petName}} el {{date}} a las {{time}}."
-}
-
